@@ -1,0 +1,26 @@
+[project]
+authors = ["Modular Inc <hello@modular.com>"]
+channels = ["conda-forge", "https://conda.modular.com/max-nightly"]
+description = "A template for working on Mojo CPU / GPU operations"
+name = "mojo-operation-template"
+platforms = ["osx-arm64", "linux-aarch64", "linux-64"]
+version = "0.1.0"
+
+[tasks]
+graph = "python graph.py"
+benchmarks = "mojo benchmarks.mojo"
+
+[feature.test.tasks]
+test = "pytest"
+
+[feature.test.dependencies]
+pytest = ">=8.3.2, <9"
+
+[dependencies]
+#max = ">=25.2.0.dev2025041105,<26"
+max = "==25.3.0.dev2025041105"
+pillow = ">=11.0.0,<12"
+
+[environments]
+default = { solve-group = "default" }
+test = { features = ["test"], solve-group = "default" }
